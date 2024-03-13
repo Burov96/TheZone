@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="15.4 15.4 33 33" enable-background="new 0 0 64 64" xml:space="preserve">
+<g id="menu-outline-bot_x5F_s1g1_x5F_s2g1_x5F_s3g1_x5F_s4g2_x5F_background">
+	
+		<path fill="#000000" stroke="#000000" stroke-width="1.655" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="   M16.25,24.382v15.236c0,4.491,3.641,8.132,8.132,8.132h15.236c4.491,0,8.132-3.641,8.132-8.132V24.382   c0-4.491-3.641-8.132-8.132-8.132H24.382C19.891,16.25,16.25,19.891,16.25,24.382z"/>
+</g>
+<g id="menu-outline-bot_x5F_s1g1_x5F_s2g2_x5F_s3g1_x5F_s4g1">
+	
+		<line fill="#E6E9EC" stroke="#E6E9EC" stroke-width="1.655" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="25" y1="25" x2="39" y2="25"/>
+	
+		<line fill="#E6E9EC" stroke="#E6E9EC" stroke-width="1.655" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="25" y1="32" x2="39" y2="32"/>
+	
+		<line fill="#E6E9EC" stroke="#E6E9EC" stroke-width="1.655" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="25" y1="39" x2="39" y2="39"/>
+</g>
+</svg>
