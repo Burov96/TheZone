@@ -51,7 +51,9 @@ export const {
         }
       },
     }),
+    
   ],
+  secret: process.env.NEXT_PUBLIC_SECRET,
   callbacks: {
     async signIn({ account, profile }) {
       if (account.provider === "github") {

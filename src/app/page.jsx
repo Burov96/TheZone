@@ -1,8 +1,8 @@
 import Image from "next/image";
 import img from "../../public/hkr.svg";
 import Link from "next/link";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // import { selectTheme } from "@/store/themeSlice";
 
 const Home = () => {
@@ -10,17 +10,17 @@ const Home = () => {
   return (
     <div className="container mx-auto py-8 px-4">
       <ToastContainer
-position="top-right"
-autoClose={5000}
-hideProgressBar={false}
-newestOnTop={false}
-closeOnClick
-rtl={false}
-pauseOnFocusLoss
-draggable
-pauseOnHover
-theme="light"
-/>
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <section className="-mb-44 relative h-screen flex flex-col justify-center items-center">
         <div className="absolute -top-32 scale-75  2xl:scale-100 lg:-top-24">
           <Image src={img} alt="Logo" width={400} height={400} />
@@ -115,8 +115,8 @@ theme="light"
           <div className="rounded-lg shadow-sm hover:shadow-xl transition duration-300 shadow-slate-950 p-4">
             <h3 className="text-lg font-semibold mb-2">Story time</h3>
             <p className="">
-{              "Share what's on your mind, what went down today / this week!"
-}            </p>
+              {"Share what's on your mind, what went down today / this week!"}
+            </p>
             <Link href="/stories/">
               <h3 className="hover:underline mt-2">Read More</h3>
             </Link>
