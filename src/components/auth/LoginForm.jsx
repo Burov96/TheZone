@@ -3,39 +3,35 @@
 import {  handleLogin } from "@/utils/actions";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 
 function LoginForm() {
-  const [isLoading, setIsLoading] = useState(false);
-
-  const login = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-
-    try {
-      const formData = new FormData(e.target);
-      const username = formData.get('username');
-      const password = formData.get('password');
-      const result = await handleLogin(username, password); // Call handleLogin
-
-      console.log('handleLogin result:', result);
-
-      if (result?.success) {
-toast.success('gj nigga')
-      } else {
-toast.error('shit nigga')
+    // const [state, formAction] = useFormState(handleLogin, undefined);
+    const router = useRouter();
+    const login = async (e) => {
+      e.preventDefault(); 
+  
+      try {
+        const formData = new FormData(e.target);
+        const username = formData.get('username');
+        const password = formData.get('password');
+        const res = await handleLogin(username, password); 
+        console.log('handleLogin result:', res); //handleLogin result:undefined
+        if (res?.success) {
+          console.log('reached the part where im all good')
+          router.push("/");
+          toast.success('Login successful!');
+        } else {
+          toast.error(res.error || 'Login failed');
+        }
+      } catch (error) {
+      console.log("the error is"+ error);
+        toast.error('An error occurred during login');
       }
-    } catch (error) {
-      toast.error('Login error:', error);
-      // Handle errors (e.g., toast message)
-    } finally {
-      setIsLoading(false);
-    }
-  };
-    return (
+    };
+  return (
 
 
     <form class="space-y-4 md:space-y-6" onSubmit={login} >
