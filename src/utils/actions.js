@@ -43,9 +43,9 @@ export const deletePost = async (formData, path) => {
   }
 };
 
-export const handleLogout = async () => {
-  "use server";
+export const handleLogout = async (e) => {
   await signOut();
+  toast.success("Successfully logged out!")
 };
 
 export const handleGithubLogin = async () => {
@@ -53,49 +53,44 @@ export const handleGithubLogin = async () => {
   await signIn("github");
 };
 
-export const handleLogin = async (formData) => {
-  const { username, password } = Object.fromEntries(formData);
-
+export const handleLogin = async (username, password) => {
   try {
-    await signIn("credentials", {
-      redirect: true,
-      callbackUrl: "/",
-      username,
-      password,
-    });
-    console.log("Logged in successfully!");
-    return "Logged in successfully!";
+    const response = await signIn("credentials", {username,password});
+    console.log('response before return:', response); //
+    return response; 
   } catch (error) {
-    return error.message;
+    if(error.message.includes('CredentialsSignin')){
+      console.log("Returning: "+ error);
+      return {error:"Invlaid username or password!"}
+    }
   }
 };
 
-export const register = async (formData) => {
-  const { username, email, password, repass } = Object.fromEntries(formData);
+export const register = async (username, email, password, repass, img) => {
   if (password !== repass) {
     // toast("Passwords do not match!");
-    return "Passwords do not match!";
+    return {error:"Passwords do not match!"};
   }
   try {
     connectToDatabase();
-    const user = await User.findOne({ email: email });
+    const user = await User.findOne({ username });
     if (user) {
       // toast("User already exists!");
-      return "User already exists!";
-    }
+      return {error:"User already exists!"}   }
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
     const newUser = new User({
-      username: username,
-      email: email,
+      username,
+      email,
       password: hashedPassword,
+      img
     });
     await newUser.save();
     //   toast.success("User created successfully!");
-    return "User created successfully!";
-  } catch (error) {
+    return {success:"User created successfully!"}
+   } catch (error) {
     console.log(error);
-    return error.message;
+    return {error:error.message};
   }
 };

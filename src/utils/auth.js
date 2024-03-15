@@ -11,16 +11,16 @@ const login = async (credentials) => {
     connectToDatabase();
     const user = await User.findOne({ username: credentials.username });
     if (!user) {
-      throw new Error("Wrong credentials!!");
+      return {error:"This user doesn't exist on the database!"};
     }
     const isMatch = await bcrypt.compare(
       credentials.password,
       user.password
     );
     if (!isMatch) {
-      throw new Error("Wrong credentials!");
-    }console.log('got logged in just now')
-    return user;
+      return {error:"Wrong credentials!"};
+    }
+    return {success:'Welcome back, ' + credentials.username + "!"}
   } catch (err) {
     console.log(err);
     return false;
@@ -43,11 +43,12 @@ export const {
         try {
           const user = await login(credentials);
           if (user) {
-            return user;
+            console.log('Returning user: '+ Object.values(user));
+            return user
           }
         } catch (err) {
-          console.log(err);
-          return null;
+          console.log('Returning eror: '+ err)
+          return {error: err}
         }
       },
     }),

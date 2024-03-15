@@ -7,6 +7,9 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import HamburgerMenu from "./hamburger/Hamburger";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const Navbar = ({session}) => {
   const [scrolled, setScrolled] = useState("");
@@ -34,6 +37,7 @@ const Navbar = ({session}) => {
         '--tw-bg-opacity': scrolled > 0 ? '0.6' : '1',
       }}
     >
+      <ToastContainer />
       <Link href="/">
         <div className="md:pl-4 scale-75 hover:animate-pulse">
           <Image src="/log.svg" alt="logo" width={80} height={80} />
