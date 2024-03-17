@@ -36,7 +36,7 @@ export default async function AllPostsPage() {
                 </div>
 
                 <p className="text-gray-700 line-clamp-3">
-                  {post.desc.slice(0, 100)}...
+                  {post.description.slice(0, 100)}...
                 </p>
             </Link>
           </div>

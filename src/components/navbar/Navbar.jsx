@@ -11,7 +11,22 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 
+
+
 const Navbar = ({session}) => {
+  // console.log(session); mi dava slednoto: 
+
+  // {
+  //   "user": {
+  //     "name": "Burov96",
+  //     "email": "burov96@gmail.com",
+  //     "image": "https://avatars.githubusercontent.com/u/103561948?v=4"
+  //   },
+  //   "expires": "2024-04-15T12:46:14.959Z"
+  // }
+
+
+
   const [scrolled, setScrolled] = useState("");
   const MAX_SCROLL = 30;
 
@@ -38,11 +53,11 @@ const Navbar = ({session}) => {
       }}
     >
       <ToastContainer />
+        <div className="fixed md:pl-4  hover:animate-pulse">
       <Link href="/">
-        <div className="md:pl-4 scale-75 hover:animate-pulse">
           <Image src="/log.svg" alt="logo" width={80} height={80} />
-        </div>
       </Link>
+        </div>
       <div className="md:hidden">
       <HamburgerMenu />
       </div>

@@ -28,9 +28,9 @@ const SinglePostPage = async ({ params }) => {
           </figure>
 
           {/* Author and Date */}
-          <div className="flex items-center gap-4 mb-4">
+          <div className="flex items-center gap-4 mb-4 ">
             {author && (
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 space-y-20">
                 <Image 
                   src={author.img} 
                   alt={author.username} 
@@ -38,7 +38,7 @@ const SinglePostPage = async ({ params }) => {
                   height={32} 
                   className="rounded-full" 
                 />
-                <span className="font-medium">{author.username}</span>
+                <span className="font-medium ">{author.username}</span>
               </div>
             )}
             <p className="text-gray-600 text-sm">Posted on {post.createdAt.toLocaleDateString()}</p> 

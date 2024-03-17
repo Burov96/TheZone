@@ -40,9 +40,8 @@ const postSchema = new mongoose.Schema({
         unique:true,
         min:15,
     },
-    desc:{
+    description:{
         type:String,
-        unique:true,
         required:true,
         min:50,
     },

@@ -1,5 +1,4 @@
 'use client'
-// 'use server'
 import {  handleLogin } from "@/utils/actions";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -17,25 +16,25 @@ function LoginForm() {
         const formData = new FormData(e.target);
         const username = formData.get('username');
         const password = formData.get('password');
-        const res = await handleLogin(username, password); 
-        console.log('handleLogin result:', res); //handleLogin result:undefined
-        if (res?.success) {
-          console.log('reached the part where im all good')
-          router.push("/");
+        const res = await handleLogin(username, password)
+        // console.log('handleLogin result:', res); //handleLogin result:undefined
+        if (res.success) {
           toast.success('Login successful!');
+          setTimeout(() => {
+            router.push("/"); 
+          }, 1000);
         } else {
-          toast.error(res.error || 'Login failed');
+           toast.error('Login failed');
         }
       } catch (error) {
-      console.log("the error is"+ error);
-        toast.error('An error occurred during login');
+        console.error("Login error:", error); 
       }
     };
   return (
 
-
+<>
+      <ToastContainer pauseOnHover={false} pauseOnFocus={false} closeOnClick={false} onClick={null} closeButton={false} />
     <form class="space-y-4 md:space-y-6" onSubmit={login} >
-      <ToastContainer />
               <div>
                 <label
                   for="username"
@@ -111,6 +110,8 @@ function LoginForm() {
               </p>
               {/* {state.error? toast.error(state.error):state.success?toast.success(state.success):null} */}
             </form>
+</>
+
 
   );
 }

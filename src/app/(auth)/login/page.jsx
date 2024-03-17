@@ -1,9 +1,9 @@
-'use client'
+'use server'
 import { FaGithub } from "react-icons/fa";
 import LoginForm from '@/components/auth/LoginForm'
 import { handleGithubLogin } from "@/utils/actions";
 
-async function LoginPage() {
+function LoginPage() {
 
   return (
     <section class="mx-3 rounded-lg md:rounded-none md:mx-auto bg-gray-50 dark:bg-gray-900 select-none">

@@ -3,8 +3,8 @@ import GitHub from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { connectToDatabase } from "./connection";
 import { User } from "./models";
-import credentials from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
+import { authConfig } from "./auth.config";
 
 const login = async (credentials) => {
   try {
@@ -20,7 +20,8 @@ const login = async (credentials) => {
     if (!isMatch) {
       return {error:"Wrong credentials!"};
     }
-    return {success:'Welcome back, ' + credentials.username + "!"}
+    console.log({success:'Welcome back, ' + credentials.username + "!"}); 
+    return user;
   } catch (err) {
     console.log(err);
     return false;
@@ -33,6 +34,7 @@ export const {
   signIn,
   signOut,
 } = NextAuth({
+  ...authConfig,
   providers: [
     GitHub({
       clientId: process.env.GITHUB_ID,
@@ -42,10 +44,10 @@ export const {
       async authorize(credentials) {
         try {
           const user = await login(credentials);
-          if (user) {
-            console.log('Returning user: '+ Object.values(user));
+          // if (user) {
+            // console.log('Returning user: '+ Object.values(user));
             return user
-          }
+          // }
         } catch (err) {
           console.log('Returning eror: '+ err)
           return {error: err}
@@ -54,9 +56,9 @@ export const {
     }),
     
   ],
-  secret: process.env.NEXT_PUBLIC_SECRET,
+  // secret: process.env.NEXT_PUBLIC_SECRET,
   callbacks: {
-    async signIn({ account, profile }) {
+    async signIn({ user, account, profile }) {
       if (account.provider === "github") {
         connectToDatabase();
         try {
@@ -78,5 +80,6 @@ export const {
       }
       return true;
     },
+    ...authConfig.callbacks,
   },
 });
